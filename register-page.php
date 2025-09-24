@@ -1,3 +1,49 @@
+
+<?php
+include 'db_connection.php';
+if(isset($_POST["submit"]))
+{
+    $name = $_POST["name"];
+    $mobile =  $_POST["mobile"];
+    $email =  $_POST["email"]; 
+     $address =  $_POST["address"]; 
+    $password =  $_POST["password"];
+    // $confirmpassword =  $_POST["confirmpassword"];
+//     $duplicate = mysqli_query($conn, "SELECT * FROM `users` WHERE mobile = '$mobile'");
+//     if (mysqli_num_rows($duplicate)>0)
+//     {
+//     echo "<script> alert('Already registerted with this Mobile number ') </script>";
+// }
+// else 
+// {
+//  $query = "INSERT INTO users values ('','$name','$mobile','$email','$address',
+//     '$password','')";
+//     mysqli_query($conn,$query);
+//  echo"<script> alert('registration successful you can login now') </script>"; 
+//  echo "<script> window.location.href = 'login_page'; </script>";
+// }
+// Check for duplicate mobile or email
+$duplicate = mysqli_query($conn, "SELECT * FROM `users` WHERE mobile = '$mobile' OR email = '$email'");
+
+if (mysqli_num_rows($duplicate) > 0) {
+    $row = mysqli_fetch_assoc($duplicate);
+    
+    if ($row['mobile'] == $mobile) {
+        echo "<script>alert('Already registered with this Mobile number'); window.location.href = 'register-page';</script>";
+    } elseif ($row['email'] == $email) {
+        echo "<script>alert('Already registered with this Email ID'); window.location.href = 'register-page';</script>";
+    }
+} else {
+  
+$query = "INSERT INTO users ( name , mobile , email , address , password) VALUES ('$name','$mobile','$email','$address','$password')";
+    if (mysqli_query($conn, $query)) {
+        echo "<script>alert('Registration successful! You can login now.'); window.location.href = 'login-page';</script>";
+    } else {
+        echo "<script>alert('Error occurred while registering.'); window.location.href = 'register-page';</script>";
+    }
+}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +56,8 @@
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
     <!-- Main css -->
     <link rel="stylesheet" href="css/style.css">
 <meta name="robots" content="noindex, follow">
@@ -30,24 +77,34 @@
                                 <label for="name"><i class="fa fa-user"></i></label>
                                 <input type="text" name="name" id="name" placeholder="Your Name"/>
                             </div>
+                              <div class="form-group">
+                                <label for="name"><i class="fas fa-mobile"></i></label>
+                                <input type="number" name="mobile" id="mobile" placeholder="Your Mobile"/>
+                            </div>
                             <div class="form-group">
                                 <label for="email"><i class="fa fa-envelope"></i></label>
                                 <input type="email" name="email" id="email" placeholder="Your Email"/>
                             </div>
+                               <div class="form-group">
+                                <label for="name"><i class="fa fa-home"></i></label>
+                                <input type="text" name="address" id="address" placeholder="Your address"/>
+                            </div>
                             <div class="form-group">
                                 <label for="pass"><i class="fa fa-lock"></i></label>
-                                <input type="password" name="pass" id="pass" placeholder="Password"/>
+                                <input type="password" name="password" id="pass" placeholder="Password"/>
                             </div>
-                            <div class="form-group">
+                            
+                            <!-- <div class="form-group">
                                 <label for="re-pass"><i class="fa fa-key"></i></label>
                                 <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
-                            </div>
+                            </div> -->
+                            
                             <!-- <div class="form-group">
                                 <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
                                 <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
                             </div> -->
                             <div class="form-group form-button">
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                                <input type="submit" name="submit" id="signup" class="form-submit" value="Register"/>
                             </div>
                         </form>
                     </div>

@@ -81,7 +81,7 @@ if (isset($_POST["submit"])) {
                     <div class="signin-image">
                         <figure><img src="images/signin-image.jpg" alt="sing up image"></figure>
                        <div class="link-wrapper">
-  <a href="index" class="signup-image-link">Home</a>
+  <a href="public/index" class="signup-image-link">Home</a>
   <a href="register-page" class="signup-image-link">Create an account</a>
 </div>
                     </div>

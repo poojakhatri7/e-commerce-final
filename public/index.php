@@ -750,7 +750,7 @@
                                     <a href='product-video.php'>(3)</a>
                                 </div>
                                 <h6 class="product-name">
-                                    <a href='product-video.php'>fresh green chilis</a>
+                                    <a href='product-video.php'>capsicum</a>
                                 </h6>
                                 <h6 class="product-price">
                                     <del>$34</del>
@@ -761,9 +761,13 @@
                                     <span>add</span>
                                 </button>
                                 <div class="product-action">
-                                    <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
+                                    <button class="action-minus" title="Quantity Minus">
+                                        <i class="icofont-minus"></i>
+                                    </button>
                                     <input class="action-input" title="Quantity Number" type="text" name="quantity" value="1">
-                                    <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                                    <button class="action-plus" title="Quantity Plus">
+                                        <i class="icofont-plus"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -797,7 +801,7 @@
                                     <a href='product-video.php'>(3)</a>
                                 </div>
                                 <h6 class="product-name">
-                                    <a href='product-video.php'>fresh green chilis</a>
+                                    <a href='product-video.php'>Carrot</a>
                                 </h6>
                                 <h6 class="product-price">
                                     <del>$34</del>

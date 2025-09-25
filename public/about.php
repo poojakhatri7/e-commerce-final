@@ -1,3 +1,5 @@
+<?php include '../db_connection.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -218,14 +220,29 @@
         <!--=====================================
                      ABOUT PART START
         =======================================-->
+    <?php
+      $sql = "SELECT * FROM tb_about";
+      $result = mysqli_query($conn, $sql);
+      $count = 0;
+      if (mysqli_num_rows($result) > 0) {
+          while ($row = mysqli_fetch_assoc($result)) {
+            $page_title = $row['page_title'];
+             $page_description = $row['page_description'];
+    ?>
+
+
         <section class="inner-section about-company">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="about-content">
-                            <h2>Our Motive is to Provide Best for Those Who Deserve</h2>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis exercitationem commodi aliquam necessitatibus vero reiciendis quaerat illo est fuga ea temporibus natus doloremque ipsum voluptas quod deserunt expedita reprehenderit pariatur quidem quisquam, recusandae animi non! Voluptas totam repudiandae rerum molestiae possimus quis numquam sapiente sunt architecto quisquam Aliquam odio optio</p>
+                            <h2><?php echo $page_title  ?></h2>
+                            <p><?php echo $page_description ?> 
+                        </p>
+                        <p> </p>
                         </div>
+
+                        <?php } } ?>
                         <ul class="about-list">
                             <li>
                                 <h3>34785</h3>

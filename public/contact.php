@@ -1,3 +1,4 @@
+<?php include '../db_connection.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -217,6 +218,18 @@
         <!--=====================================
                     CONTACT PART START
         =======================================-->
+
+
+            <?php
+      $sql = "SELECT * FROM tb_contact_us";
+      $result = mysqli_query($conn, $sql);
+      $count = 0;
+      if (mysqli_num_rows($result) > 0) {
+          while ($row = mysqli_fetch_assoc($result)) {
+            $mobile = $row['mobile_number'];
+             $address = $row['address'];
+               $email = $row['email_us'];
+    ?>
         <section class="inner-section contact-part">
             <div class="container">
                 <div class="row">
@@ -224,7 +237,7 @@
                         <div class="contact-card">
                             <i class="icofont-location-pin"></i>
                             <h4>head office</h4>
-                            <p>1Hd- 50, 010 Avenue, NY 90001 United States</p>
+                            <p><?php echo $address ?> </p>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4">
@@ -232,7 +245,7 @@
                             <i class="icofont-phone"></i>
                             <h4>phone number</h4>
                             <p>
-                                <a href="#">009-215-5596 <span>(toll free)</span></a>
+                                <a href="#"><?php echo $mobile?> <span>(toll free)</span></a>
                                 <a href="#">009-215-5595</a>
                             </p>
                         </div>
@@ -242,16 +255,17 @@
                             <i class="icofont-email"></i>
                             <h4>Support mail</h4>
                             <p>
-                                <a href="#">contact@example.com</a>
+                                <a href="#"><?php echo $email ?></a>
                                 <a href="#">info@example.com</a>
                             </p>
                         </div>
                     </div>
                 </div>
+                <?php }} ?>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="contact-map">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3654.3406974350205!2d90.48469931445422!3d23.663771197998262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b0d5983f048d%3A0x754f30c82bcad3cd!2sJalkuri%20Bus%20Stop!5e0!3m2!1sen!2sbd!4v1605354966349!5m2!1sen!2sbd" aria-hidden="false" tabindex="0"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.1198788435363!2d80.82633237535462!3d26.836139163377318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bff3e34dd1d4f%3A0xc5d69250c13efe61!2sTVS%20SOLUTIONS!5e0!3m2!1sen!2sin!4v1751522471677!5m2!1sen!2sin" aria-hidden="false" tabindex="0"></iframe>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -259,25 +273,25 @@
                             <h4>Drop Your Thoughts</h4>
                             <div class="form-group">
                                 <div class="form-input-group">
-                                    <input class="form-control" type="text" placeholder="Your Name">
+                                    <input class="form-control" type="text" placeholder="Your Name" required>
                                     <i class="icofont-user-alt-3"></i>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-input-group">
-                                    <input class="form-control" type="text" placeholder="Your Email">
+                                    <input class="form-control" type="email" placeholder="Your Email" required>
                                     <i class="icofont-email"></i>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-input-group">
-                                    <input class="form-control" type="text" placeholder="Your Subject">
-                                    <i class="icofont-book-mark"></i>
+                                    <input class="form-control" type="number" placeholder="Your Mobile number" required>
+                                    <i class="icofont-phone"></i>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-input-group">
-                                    <textarea class="form-control" placeholder="Your Message"></textarea>
+                                    <textarea class="form-control" placeholder="Your Message" required></textarea>
                                     <i class="icofont-paragraph"></i>
                                 </div>
                             </div>

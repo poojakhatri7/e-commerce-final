@@ -21,7 +21,6 @@
                   </form>
                 </div>
                 
-             
             </div>
              <div id="tableExample2" data-list='{"valueNames":["name","email","age"],"page":10,"pagination":{"innerWindow":2,"left":1,"right":1}}'>
   <div class="table-responsive mx-n4  mx-lg-n6  bg-body-emphasis border-top border-bottom border-translucent position-relative mt-3">

@@ -12,7 +12,7 @@ $heading = mysqli_real_escape_string($conn, $_POST['heading']);
 
  $query = "UPDATE tb_about set page_title ='$heading', page_description ='$page_description' WHERE id= 1";
 if (mysqli_query($conn, $query)) {
-    echo "Record updated successfully";
+    echo "<script> alert('Record updated successfully') </script>";
 } else {
     echo "Error: " . mysqli_error($conn);
 }

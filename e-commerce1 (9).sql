@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Sep 24, 2025 at 01:45 PM
+-- Generation Time: Sep 25, 2025 at 11:10 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -489,20 +489,16 @@ INSERT INTO `sub_category_service` (`s_id`, `s_name`, `description`, `file`, `su
 
 CREATE TABLE `tb_about` (
   `id` int(40) NOT NULL,
-  `page_title` varchar(35) NOT NULL,
-  `page_description` varchar(400) NOT NULL,
-  `page_content` varchar(400) DEFAULT NULL,
-  `page_text` varchar(400) DEFAULT NULL
+  `page_title` varchar(200) NOT NULL,
+  `page_description` varchar(400) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tb_about`
 --
 
-INSERT INTO `tb_about` (`id`, `page_title`, `page_description`, `page_content`, `page_text`) VALUES
-(1, '', '<p>hello hy</p>\r\n', NULL, NULL),
-(2, 'Mind, Body and Soul', 'Demo salon where you will feel unique', 'Welcome to our Demo salon, where you’ll experience personalized beauty treatments in a sophisticated and relaxing atmosphere. Our expert team ensures that every visit leaves you feeling unique, pamper', 'Step into our luxury salon, where every detail is crafted to make you feel unique. Experience personalized beauty treatments in an elegant, serene environment. Our expert stylists and beauticians are '),
-(3, 'Our Services', 'Feel Yourself More Beautiful', 'Embrace your beauty with our expert treatments, designed to enhance your natural features and make you feel radiant. Rediscover your confidence and step out looking and feeling your absolute best with', NULL);
+INSERT INTO `tb_about` (`id`, `page_title`, `page_description`) VALUES
+(1, 'dsd', ' fdsf');
 
 -- --------------------------------------------------------
 
@@ -575,7 +571,7 @@ CREATE TABLE `tb_contact_us` (
 --
 
 INSERT INTO `tb_contact_us` (`id`, `mobile_number`, `address`, `email_us`, `time`, `Logo`) VALUES
-(1, 8789090876, ' RAJAJIPURAM', 'h@yourdomain.com', '18:25', 'upload-images/slide-2.jpg');
+(1, 918899117706, 'Kakori Tiraha, Near Shree Ram Mandir, Mohan Road Lucknow (Uttar Pradesh) 216001', 'info@tvssolutions.in', '18:25', 'upload-images/slide-2.jpg');
 
 -- --------------------------------------------------------
 

@@ -220,6 +220,7 @@
         <!--=====================================
                      ABOUT PART START
         =======================================-->
+        
     <?php
       $sql = "SELECT * FROM tb_about";
       $result = mysqli_query($conn, $sql);

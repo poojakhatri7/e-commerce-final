@@ -1,3 +1,4 @@
+<?php include '../db_connection.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -34,6 +35,16 @@
         =======================================-->
     </head>
     <body>
+
+
+    <style>
+.carousel-item img {
+  height: 580px; /* full screen height */
+  object-fit: cover;
+}
+
+
+</style>
         <div class="backdrop"></div>
         <a class="backtop fas fa-arrow-up" href="#"></a>
 
@@ -561,80 +572,88 @@
                             </ul>
                         </div>
                     </div>
+        <!--=====================================
+                    BANNER PART START
+        =======================================-->
                     <div class="col-lg-9">
                         <div class="row">
-                            <div class="col-lg-12">
-                                <div class="home-grid-slider slider-dots">
-                                    <div class="banner-wrap bg1">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-6 col-lg-6">
-                                                <div class="banner-content">
-                                                    <h2>we are delivered organic foods item within 24 hours.</h2>
-                                                    <a href="#" class="btn btn-inline">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                        <span>shop now</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-lg-6">
-                                                <div class="banner-image">
-                                                    <img src="images/home/index/01.png" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="banner-wrap bg2">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-6 col-lg-6">
-                                                <div class="banner-content">
-                                                    <h2>get your organic healthy foods item online today.</h2>
-                                                    <a href="#" class="btn btn-inline">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                        <span>shop now</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-lg-6">
-                                                <div class="banner-image">
-                                                    <img src="images/home/index/02.png" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="banner-wrap bg3">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-6 col-lg-6">
-                                                <div class="banner-content">
-                                                    <h2>we are delivered organic foods item within 24 hours.</h2>
-                                                    <a href="#" class="btn btn-inline">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                        <span>shop now</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-lg-6">
-                                                <div class="banner-image">
-                                                    <img src="images/home/index/03.png" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6">
-                                <div class="banner-promo">
-                                    <a href="#"><img src="images/promo/home/04.jpg" alt="promo"></a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6">
-                                <div class="banner-promo">
-                                    <a href="#"><img src="images/promo/home/05.jpg" alt="promo"></a>
-                                </div>
-                            </div>
+
+
+<?php 
+$sql = "Select * from banner_management";
+   $result =  mysqli_query($conn ,$sql);
+   ?>
+  <?php if(mysqli_num_rows($result)) ?>
+ <div id="homeCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+     <div class="carousel-inner">
+       <?php
+    $active = true;
+    while ($row = mysqli_fetch_assoc($result)) { 
+        $imagePath = "../public/" .$row['file'];
+       
+        $title = $row['content'];
+		// $Button_name = $row['buttonName'];
+		// $Button_Link = $row['buttonLink'];
+    
+        // echo "<pre>";
+        // echo "Image Path: " . $imagePath . "\n";
+        // echo "Title: " . $title . "\n";
+        // echo "</pre>";
+?>
+
+
+    <!-- First Slide -->
+     <div class="carousel-item <?php echo $active ? 'active' : ''; ?>" data-interval ="4000">
+      <img src="<?php echo $imagePath; ?>" class="d-block w-100" alt="banner image">
+     
+      <div class="carousel-caption d-none d-md-block banner-content">
+        <h2> <?php echo $title ?></h2>
+        <a href="#" class="btn btn-inline">
+          <i class="fas fa-shopping-basket"></i>
+          <span>shop now</span>
+        </a>
+      </div>
+    </div>
+<?php 
+ $active = false;
+} ?>
+    <!-- Add more slides here -->
+       <!-- <div class="carousel-item">
+      <img src="images/home/index/happy-women2.jpg" class="d-block w-100" alt="banner image">
+      <div class="carousel-caption d-none d-md-block banner-content">
+        <h2>we are delivered organic foods item within 24 hours.</h2>
+        <a href="#" class="btn btn-inline">
+          <i class="fas fa-shopping-basket"></i>
+          <span>shop now</span>
+        </a>
+      </div>
+    </div> -->
+
+  </div>
+
+  <!-- Carousel Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+
+  <!-- Carousel Indicators -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1"></button>
+  </div>
+</div>
+
+                          
                         </div>
                     </div>
+                    
                 </div>
+                
             </div>
+            
         </section>
         <!--=====================================
                     BANNER PART END

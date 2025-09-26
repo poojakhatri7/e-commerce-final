@@ -13,6 +13,7 @@ $heading = mysqli_real_escape_string($conn, $_POST['heading']);
  $query = "UPDATE tb_about set page_title ='$heading', page_description ='$page_description' WHERE id= 1";
 if (mysqli_query($conn, $query)) {
     echo "<script> alert('Record updated successfully') </script>";
+     echo "<script>window.location.href='" . $_SERVER['PHP_SELF'] . "';</script>";
 } else {
     echo "Error: " . mysqli_error($conn);
 }

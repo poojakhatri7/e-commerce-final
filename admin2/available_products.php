@@ -4,7 +4,6 @@
 <?php include 'top_navbar.php'; ?>
 
 <div class="content">
-      
         <div class="mb-9">
           <div class="row g-3 mb-4">
             <div class="col-auto">
@@ -15,14 +14,35 @@
           <div id="products" data-list='{"valueNames":["product","price","category","tags","vendor","time"],"page":10,"pagination":true}'>
             <div class="mb-4">
               <div class="d-flex flex-wrap gap-3">
-                <div class="search-box">
-                  <form class="position-relative"><input class="form-control search-input search" type="search" placeholder="Search products" aria-label="Search" />
-                    <span class="fas fa-search search-box-icon"></span>
-                  </form>
-                </div>
-                
             </div>
-             <div id="tableExample2" data-list='{"valueNames":["name","email","age"],"page":10,"pagination":{"innerWindow":2,"left":1,"right":1}}'>
+
+             <div class= "row g-2 mb-2"> 
+<div class="col-sm-4">
+                      <!-- select -->
+                      <div class="form-group">
+<label class="mb-2 fw-bold text-primary">Select Category</label>
+
+                        <select class="form-control" id="service">
+                        <option>Select Product Category</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row g-2 mb-2">
+                    <div class="col-sm-4">
+                      <!-- select -->
+                      <div class="form-group">
+                        <label class="mb-2 fw-bold text-primary">Select Sub Category</label>
+                        <select class="form-control"  id="sub_service">
+                        <option>Select  Product category first </option>
+                        </select>
+                      </div>
+                    </div>
+      
+</div>
+ 
+
+
+  <div id="tableExample2" data-list='{"valueNames":["name","email","age"],"page":10,"pagination":{"innerWindow":2,"left":1,"right":1}}'>
   <div class="table-responsive mx-n4  mx-lg-n6  bg-body-emphasis border-top border-bottom border-translucent position-relative mt-3">
   <table class="table table-hover table-striped table-bordered table-large align-middle text-center shadow-lg rounded-3 overflow-hidden fs-9 mb-0">
   <thead class="table-primary text-dark">
@@ -42,40 +62,7 @@
     </tr>
   </thead>
   <tbody class="list">
-    <?php
-      $sql = "SELECT * FROM all_products ORDER BY id DESC";
-      $result = mysqli_query($conn, $sql);
-      $count = 0;
-      if (mysqli_num_rows($result) > 0) {
-          while ($row = mysqli_fetch_assoc($result)) {
-              $count++;
-               $imagePath = "../admin2/" .$row['file'];
-    ?>
-<tr >
-  <td class="fw-bold"><?php echo $count ?></td>
-  
-     <td><img src="<?php echo $imagePath; ?>" alt="Image" style="width: 50px; height: 50px; object-fit: cover;"></td>
-  <td class="ps-3 text-uppercase fw-semibold"><?php echo $row['product'] ?></td>
-
-  <td><?php echo $row['price'] ?></td>
-  <td>
-  <?php echo $row["discount_percentage"] ?>
-  </td>
-  <td>
-    <span class=" text-dark fw-bold"><?php echo $row["offer_price"] ?></span>
-  </td>
-    <td class=" fw-semibold"><?php echo $row['description'] ?></td>
-  <td>
-    <span class="  text-dark"><?php echo $row["c_id"] ?></span>
-  </td>
-  <td class="text-muted"><?php echo $row["s_id"] ?>
-</td>
- <td ><?php echo $row["created_at"] ?>
-</td>
-</tr>
-
-
-    <?php } } ?>
+   
   </tbody>
 </table>
 
@@ -95,3 +82,98 @@
           </div>
         </div>
       </div>
+      <script>
+    async function loadServices() {
+    try {
+        const response = await fetch("load_service.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({ request_type: "service_data" })
+        });
+        const data = await response.text();
+
+        // 🟢 Debug log
+        console.log("Category Response:", data);
+
+        document.querySelector("#service").innerHTML = data;
+    } catch (error) {
+        console.error("Error loading services:", error);
+    }
+}
+ </script>
+
+       <script>
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // Function to load service categories
+    async function loadServices() {
+        try {
+            const response = await fetch("load_service.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({ request_type: "service_data" })
+            });
+            const data = await response.text();
+            document.querySelector("#service").innerHTML = data;
+        } catch (error) {
+            console.error("Error loading services:", error);
+        }
+    }
+
+    // Function to load sub-services based on selected category
+    async function loadSubServices(service_id) {
+        try {
+            const response = await fetch("load_service.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({ request_type: "sub_service_data", id: service_id })
+            });
+            const data = await response.text();
+            document.querySelector("#sub_service").innerHTML = data;
+        } catch (error) {
+            console.error("Error loading sub-services:", error);
+        }
+    }
+
+    // Load categories on page load
+    loadServices();
+
+    // On change of service category, load corresponding sub-services
+    document.querySelector("#service").addEventListener("change", (e) => {
+        const service_id = e.target.value;
+        if (service_id !== "") {
+            loadSubServices(service_id);
+        } else {
+            document.querySelector("#sub_service").innerHTML = '<option value="">Select Sub-Category</option>';
+        }
+    });
+
+    // On change of sub-service, load corresponding service details in the table
+    document.querySelector("#sub_service").addEventListener("change", async (e) => {
+        const sub_service = e.target.value;
+        try {
+            const response = await fetch("load_service.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({ sub_service: sub_service })
+            });
+            const textResponse = await response.text();
+
+            // Extract tbody from the response
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(textResponse, "text/html");
+            const tableBody = doc.querySelector("tbody") ? doc.querySelector("tbody").innerHTML : "";
+
+            if (tableBody) {
+                document.querySelector("#tableExample2 tbody").innerHTML = tableBody;
+            } else {
+                document.querySelector("#tableExample2 tbody").innerHTML =
+                    "<tr><td colspan='9' class='text-center'>No product found.</td></tr>";
+            }
+        } catch (error) {
+            console.error("Error loading service details:", error);
+        }
+    });
+
+});
+</script>

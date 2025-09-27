@@ -258,7 +258,7 @@
   max-width: fit-content;
   top: 0px;
   left: 235px;
-  z-index: 1;
+  z-index: 9999;
   padding: 20px;
   border-radius: 5px;
   background: var(--white);

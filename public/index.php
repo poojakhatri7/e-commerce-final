@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   
-        <title> E-commerce website</title>
+        <title>E-commerce website</title>
 
         <!--=====================================
                     CSS LINK PART START
@@ -630,7 +630,6 @@ $sql = "Select * from banner_management";
     </div> -->
 
   </div>
-
   <!-- Carousel Controls -->
   <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
     <span class="carousel-control-prev-icon"></span>

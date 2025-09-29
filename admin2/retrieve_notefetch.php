@@ -12,6 +12,5 @@ if (mysqli_num_rows($result) > 0) {
         $notes[] = $row;
     }
 }
-
 echo json_encode($notes); // return notes as JSON
 ?>

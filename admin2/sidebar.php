@@ -123,7 +123,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="add-category.php">
+        <a class="nav-link" href="add_category">
           <span data-feather="layers"></span>
           <span class="submenu-text">Add Category & Sub Category</span>
         </a>

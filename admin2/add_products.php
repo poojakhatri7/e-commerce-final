@@ -41,7 +41,7 @@ $sql = "INSERT INTO all_products ( product, description ,c_id, s_id , price, dis
           <div class="row g-3 flex-between-end mb-5">
             <div class="col-auto">
               <h2 class="mb-2">Add a Product</h2>
-              <h5  style="color: rgba(95, 97, 230);font-size:20px;">Orders placed across your store</h5>
+              <h5  style="color:rgba(95, 97, 230);font-size:20px;">Orders placed across your store</h5>
             </div>
             <div class="col-auto"><button class="btn btn-danger me-2 mb-2 mb-sm-0" type="reset">Discard</button>
            

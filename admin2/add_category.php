@@ -29,7 +29,7 @@ if (isset($_POST['submit1'])) {
     $s_description = $_POST['sub_category_description'];
     $c_id = $_POST['c_id']; // Selected category
     // $sub_image = $_POST['sub_image']; // Selected category
-      move_uploaded_file($photo2, $uploadPath);
+  move_uploaded_file($photo2, $uploadPath);
  $check_query1 = "SELECT * FROM sub_category_service WHERE s_name = '$s_name'";
  $result = mysqli_query($conn, $check_query1);
  if (mysqli_num_rows($result) > 0) {

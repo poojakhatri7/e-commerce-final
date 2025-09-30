@@ -8,8 +8,8 @@
           <div class="row g-4">
             <div class="col-12 col-xxl-6">
               <div class="mb-8">
-                <h2 class="mb-2">Ecommerce Dashboard</h2>
-                <h5 class="text-body-tertiary fw-semibold">Here’s what’s going on at your business right now</h5>
+                <h2 class="mb-2">E-commerce Dashboard</h2>
+                <h5 style="color:rgba(95, 97, 230); font-size:20px;">Here’s what’s going on at your business right now</h5>
               </div>
           <div class="row align-items-center g-4">
 
@@ -24,9 +24,15 @@
         <span class="fa-stack-1x fa-solid fa-star text-success" 
               data-fa-transform="shrink-2 up-8 right-6"></span>
       </span>
+
+
+      <?php  
+      $sql = mysqli_query($conn, "Select * from users");
+      $total_users = mysqli_num_rows($sql);
+      ?>
       <div class="ms-3">
-        <h4 class="mb-0">57 new orders</h4>
-        <p class="text-body-secondary fs-9 mb-0">Awaiting processing</p>
+        <h4 class="mb-0"> <?php echo $total_users ?> Registered Users </h4>
+       <a href="customer" class="fs-8 mb-0" style="color:rgba(95, 97, 230); font-weight: bold">More Info</a>
       </div>
     </div>
   </div>
@@ -43,8 +49,12 @@
               data-fa-transform="shrink-2 up-8 right-6"></span>
       </span>
       <div class="ms-3">
-        <h4 class="mb-0">5 orders</h4>
-        <p class="text-body-secondary fs-9 mb-0">On hold</p>
+        <?php   $sql1 = mysqli_query($conn , "Select * from all_services");
+        $total_products = mysqli_num_rows($sql1);
+        
+        ?>
+        <h4 class="mb-0"><?php  echo $total_products ?>  Total Products</h4>
+        <a href="available_products" class="fs-8 mb-0" style="color:rgba(95, 97, 230); font-weight: bold">More Info</a>
       </div>
     </div>
   </div>
@@ -65,9 +75,14 @@
       <span class="fa-stack-1x fa-solid fa-check text-white" 
             data-fa-transform="shrink-2 up-8 right-6"></span>
     </span>
+
+
+    <?php   $sql2 = mysqli_query($conn ,"Select * from orders");
+    $total_orders = mysqli_num_rows($sql2);
+    ?> 
     <div class="ms-3">
-      <h4 class="mb-0">20 delivered</h4>
-      <p class="text-body-secondary fs-9 mb-0">Completed orders</p>
+      <h4 class="mb-0"> <?php echo $total_orders ?> Total orders</h4>
+     <a href="orders" class="fs-8 mb-0" style="color:rgba(95, 97, 230); font-weight: bold">More Info</a>
     </div>
   </div>
 </div>
@@ -83,9 +98,14 @@
         <span class="fa-solid fa-circle fa-stack-2x stack-circle text-stats-circle-danger"></span>
         <span class="fa-stack-1x fa-solid fa-xmark text-danger"></span>
       </span>
+
+
+      <?php $sql3 = mysqli_query($conn , "Select * from enquiry_message");
+      $enquiry_message = mysqli_num_rows( $sql3);
+      ?>
       <div class="ms-3">
-        <h4 class="mb-0">15 products</h4>
-        <p class="text-body-secondary fs-9 mb-0">Out of stock</p>
+        <h4 class="mb-0"><?php echo $enquiry_message  ?>  Messages</h4>
+        <a href="admin_enquiry_message" class="fs-8 mb-0" style="color:rgba(95, 97, 230); font-weight: bold">More Info</a>
       </div>
     </div>
   </div>

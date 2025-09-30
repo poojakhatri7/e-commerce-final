@@ -4,7 +4,7 @@
 <?php include 'top_navbar.php'; ?>
 <div class="content">
 
-  <h2 class="mb-4">Enquiry Messages</h2>
+  <h2 class="mb-4"> Complete Enquiry Messages</h2>
   <div id="tableExample2" data-list='{"valueNames":["name","email","age"],"page":5,"pagination":{"innerWindow":2,"left":1,"right":1}}'>
   <div class="table-responsive mx-n4  mx-lg-n6  bg-body-emphasis border-top border-bottom border-translucent position-relative mt-3">
   <table class="table table-hover table-striped table-bordered table-large align-middle text-center shadow-lg rounded-3 overflow-hidden fs-9 mb-0">

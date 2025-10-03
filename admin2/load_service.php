@@ -3,7 +3,7 @@ include 'db_connection.php';
 $request_type = isset($_POST['request_type']) ? $_POST['request_type'] : '';
 
 if ($request_type == "service_data") {
-    $sql = "SELECT * FROM category_service";
+    $sql = "SELECT * FROM product_category";
     $query = mysqli_query($conn, $sql);
 
     $str = '<option value="">Select Category</option>';
@@ -15,7 +15,7 @@ if ($request_type == "service_data") {
 
 elseif ($request_type == "sub_service_data") {
     $id = mysqli_real_escape_string($conn, $_POST['id']);
-    $sql = "SELECT * FROM sub_category_service WHERE sub_service = '$id'";
+    $sql = "SELECT * FROM product_sub_category WHERE sub_service = '$id'";
     $query = mysqli_query($conn, $sql);
 
     $str = '<option value="">Select a Sub Service</option>';
@@ -24,10 +24,9 @@ elseif ($request_type == "sub_service_data") {
     }
     echo $str;
 }
-
 elseif (isset($_POST['sub_service'])) {
     $sub_service = mysqli_real_escape_string($conn, $_POST['sub_service']);
-    $query = "SELECT * FROM all_services WHERE service_number = '$sub_service' ORDER BY a_id DESC";
+    $query = "SELECT * FROM all_products WHERE s_id = '$sub_service' ORDER BY id DESC";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) > 0) {
@@ -35,15 +34,7 @@ elseif (isset($_POST['sub_service'])) {
         <table id="example1" class="table table-bordered table-striped">
             <thead style="background-color: rgb(51, 139, 139);">
                 <tr>
-                    <th style="color: #eee;">S No.</th>
-                    <th style="color: #eee;">Service Name</th>
-                    <th style="color: #eee;">Service Price</th>
-                    <th style="color: #eee;">Discount %</th>
-                    <th style="color: #eee;">Price After Discount</th>
-                    <th style="color: #eee;">Image 1</th>
-                    <th style="color: #eee;">Image 2</th>
-                    <th style="color: #eee;">Image 3</th>
-                    <th style="color: #eee;">Actions</th>
+                   
                 </tr>
             </thead>
             <tbody>';
@@ -53,24 +44,24 @@ elseif (isset($_POST['sub_service'])) {
             echo "<tr>
                     <td>{$sno}</td>
                     <td><img src='{$row['file']}' alt='Service Image' style='width:50px;height:50px;object-fit:cover;'></td>
-                    <td>{$row['all_service']}</td>
+                    <td>{$row['product']}</td>
                     <td>{$row['price']}</td>
                     
                     <td>{$row['discount_percentage']}</td>
-                    <td>{$row['price_after_discount']}</td>
+                    <td>{$row['offer_price']}</td>
                      <td>{$row['description']}</td>
-                      <td>{$row['service_number']}</td>
-                                            <td>{$row['c_id_category_service']}</td>
+                      <td>{$row['c_id']}</td>
+                                            <td>{$row['s_id']}</td>
                  
                    
                     <td>
                         <div style='display:inline-block;margin-right:20px;'>
-                            <a href='edit_services?id={$row['a_id']}'>
+                            <a href='edit_services?id={$row['id']}'>
                                 <i class='fas fa-pencil-alt' style='color:green;'></i>
                             </a> 
                         </div>
                         <div style='display:inline-block;'>
-                            <a href='delete_data?id={$row['a_id']}&table=all_services'>
+                            <a href='delete_data?id={$row['id']}&table=all_products'>
                                 <i class='fa fa-trash' style='color:red;'></i>
                             </a>
                         </div>

@@ -9,7 +9,7 @@ if ($request_type == "service_data")
 {
     // print_r($_POST);
     $request_type = $_POST['request_type'];
-    $sql = "SELECT * from category_service";
+    $sql = "SELECT * from product_category";
 
 $query = mysqli_query($conn,$sql);
 // echo "pooja";
@@ -25,7 +25,7 @@ echo $str;
 else
 if($_POST['request_type']=="sub_service_data")
 {
-    $sql = "SELECT * from sub_category_service WHERE sub_service = {$_POST['id']}";
+    $sql = "SELECT * from product_sub_category WHERE sub_service = {$_POST['id']}";
 
     $query = mysqli_query($conn,$sql);
     // echo "pooja";

@@ -7,7 +7,7 @@
         <div class="mb-9">
           <div class="row g-3 mb-4">
             <div class="col-auto">
-              <h2 class="mb-0"> Available Products</h2>
+              <h2 class="mb-0">Available Products</h2>
             </div>
           </div>
       
@@ -40,8 +40,6 @@
       
 </div>
  
-
-
   <div id="tableExample2" data-list='{"valueNames":["name","email","age"],"page":10,"pagination":{"innerWindow":2,"left":1,"right":1}}'>
   <div class="table-responsive mx-n4  mx-lg-n6  bg-body-emphasis border-top border-bottom border-translucent position-relative mt-3">
   <table class="table table-hover table-striped table-bordered table-large align-middle text-center shadow-lg rounded-3 overflow-hidden fs-9 mb-0">
@@ -50,7 +48,6 @@
       <th class="sort border-top" data-sort="name">S no.</th>
        <th class="sort border-top border-translucent ps-3" data-sort="name">Images</th>
       <th class="sort border-top border-translucent ps-3" data-sort="name">Product Name</th>
-
     <th class="sort border-top" data-sort="email">Price (Rs)</th>
        <th class="sort border-top" data-sort="email">Discount (%)</th>
         <th class="sort border-top" data-sort="email">Offer Price (Rs)</th>
@@ -62,7 +59,6 @@
     </tr>
   </thead>
   <tbody class="list">
-   
   </tbody>
 </table>
 

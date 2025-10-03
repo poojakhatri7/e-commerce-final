@@ -13,7 +13,7 @@ $photo2 = $_FILES["image"]["tmp_name"];
 $uploadPath = "upload-images/" . $photo;
 move_uploaded_file($photo2, $uploadPath);
 
- $sql = "INSERT INTO category_service (c_service,description,file) values ('$c_product','$c_description','$uploadPath')";
+ $sql = "INSERT INTO product_category (c_service,description,file) values ('$c_product','$c_description','$uploadPath')";
 if (mysqli_query($conn, $sql)) {
     echo "<script> alert('Record inserted successfully') </script>";
      echo "<script>window.location.href='" . $_SERVER['PHP_SELF'] . "';</script>";
@@ -30,21 +30,21 @@ if (isset($_POST['submit1'])) {
     $c_id = $_POST['c_id']; // Selected category
     // $sub_image = $_POST['sub_image']; // Selected category
   move_uploaded_file($photo2, $uploadPath);
- $check_query1 = "SELECT * FROM sub_category_service WHERE s_name = '$s_name'";
+ $check_query1 = "SELECT * FROM product_sub_category WHERE s_name = '$s_name'";
  $result = mysqli_query($conn, $check_query1);
  if (mysqli_num_rows($result) > 0) {
      // Category already exists
     //  $error_message = "Category already exists!";
-    header("Location: " . $_SERVER['PHP_SELF'] . "?error=1");
+    // header("Location: " . $_SERVER['PHP_SELF'] . "?error=1");
     exit();
  }
  else {
  
-    $query = "INSERT INTO sub_category_service (s_name, description, sub_service , file ) VALUES ('$s_name', '$s_description', '$c_id','$uploadPath')";
+    $query = "INSERT INTO product_sub_category (s_name, description, sub_service , file ) VALUES ('$s_name', '$s_description', '$c_id','$uploadPath')";
     if(mysqli_query($conn, $query));
     {
-        header("Location: " . $_SERVER['PHP_SELF'] . "?success=1");
-        exit();
+         echo "<script> alert('Product sub-category inserted successfully') </script>";
+      
     }
 }
 }
@@ -72,7 +72,7 @@ if (isset($_POST['submit1'])) {
    <!-- Add sub-category form-->
     <form action="" method="POST" enctype="multipart/form-data">
     <?php 
-    $category_result = mysqli_query($conn, "SELECT * FROM category_service"); 
+    $category_result = mysqli_query($conn, "SELECT * FROM product_category"); 
     ?>
     <div class="col-12 col-xl-8">
        <h4 class="mb-3">Select</h4>

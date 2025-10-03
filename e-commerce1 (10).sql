@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Sep 25, 2025 at 11:10 AM
+-- Generation Time: Oct 03, 2025 at 01:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -65,17 +65,17 @@ CREATE TABLE `all_products` (
   `discount_percentage` int(200) NOT NULL,
   `offer_price` int(200) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `file` varchar(200) NOT NULL
+  `file` varchar(200) NOT NULL,
+  `product_number` int(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `all_products`
 --
 
-INSERT INTO `all_products` (`id`, `c_id`, `s_id`, `product`, `description`, `price`, `discount_percentage`, `offer_price`, `created_at`, `file`) VALUES
-(1, 1, 1, 'Samsung mobile ', 'Good camera quality', 80000, 10, 72000, '2025-09-23 05:10:33', 'upload-images/712SuRmHG4L._UF1000,1000_QL80_.jpg'),
-(2, 1, 1, 'Nokia mobile', 'snake game available', 6000, 15, 5100, '2025-09-23 05:11:42', 'upload-images/lava_hero_shakti_keypad_mobile-1.jpg'),
-(3, 1, 1, 'Realme mobile', 'High discount is available', 20000, 10, 18000, '2025-09-23 05:18:04', 'upload-images/THUMB_Galaxy-A34-5G-Media-Assets-Thumb.jpg');
+INSERT INTO `all_products` (`id`, `c_id`, `s_id`, `product`, `description`, `price`, `discount_percentage`, `offer_price`, `created_at`, `file`, `product_number`) VALUES
+(1, 1, 1, 'Samsung mobile ', 'Good Mobile', 20000, 10, 18000, '2025-10-03 09:20:30', 'upload-images/', NULL),
+(2, 2, 2, 'jeans top', 'very good', 200, 10, 180, '2025-10-03 09:53:41', 'upload-images/download.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -97,13 +97,6 @@ CREATE TABLE `all_services` (
   `c_id_category_service` int(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `all_services`
---
-
-INSERT INTO `all_services` (`a_id`, `all_service`, `price`, `discount_percentage`, `price_after_discount`, `description`, `file`, `file1`, `file2`, `service_number`, `c_id_category_service`) VALUES
-(1, 'Samsung mobile', 20000, 10, 18000, 'good', 'upload-images/THUMB_Galaxy-A34-5G-Media-Assets-Thumb.jpg', 'upload-images/THUMB_Galaxy-A34-5G-Media-Assets-Thumb.jpg', 'upload-images/THUMB_Galaxy-A34-5G-Media-Assets-Thumb.jpg', 1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -123,14 +116,9 @@ CREATE TABLE `banner_management` (
 --
 
 INSERT INTO `banner_management` (`id`, `file`, `content`, `buttonName`, `buttonLink`) VALUES
-(2, 'upload-images/hero-9.jpg', 'Skin care studio', 'View Menu', 'https://beautyparlour.ranjeetyadav.in/pprice?c_id=1'),
-(3, 'upload-images/slide-1.jpg', 'Unleash your beauty with Demo Beauty Studio', 'View Menu', 'https://beautyparlour.edug.in/pprice?c_id=3'),
-(9, 'upload-images/slide-15.jpg', 'Hair Care Studio', 'View Menu', 'https://beautyparlour.edug.in/pprice?c_id=1'),
-(13, 'upload-images/slide-3.jpg', 'Make up studio', 'View Menu', NULL),
-(30, 'upload-images/makeupp.avif', 'Beauty salon', 'View Menu', 'https://beautyparlour.edug.in/pprice?c_id=2'),
-(35, 'upload-images/wallpaper51.jpg', 'Artist', 'demo studio Menu', 'https://beautyparlour.edug.in/pprice?c_id=2'),
-(38, 'upload-images/wallpaper71.jpg', 'Artist', 'demo studio Menu', 'https://beautyparlour.edug.in/pprice?c_id=1'),
-(45, 'upload-images/slide-2.jpg', 'Stay beautiful', 'demo studio ', 'https://tvssolution.in/');
+(2, 'upload-images/happy-women2.jpg', 'Skin care studio', 'View Menu', 'https://beautyparlour.ranjeetyadav.in/pprice?c_id=1'),
+(3, 'upload-images/happy-women.jpg', 'welcome to the big sale. shop from our latest collection.', 'View Menu', 'https://beautyparlour.edug.in/pprice?c_id=3'),
+(63, 'upload-images/happy-women3.jpg', 'shop from our collection.', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -187,26 +175,6 @@ INSERT INTO `business_hours` (`id`, `day`, `open_time`, `close_time`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category_service`
---
-
-CREATE TABLE `category_service` (
-  `c_id` int(40) NOT NULL,
-  `c_service` varchar(200) NOT NULL,
-  `description` varchar(200) DEFAULT NULL,
-  `file` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `category_service`
---
-
-INSERT INTO `category_service` (`c_id`, `c_service`, `description`, `file`) VALUES
-(1, 'Electronics', 'All electronics products are available here ', 'upload-images/electronics.jpg');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `enquiry_message`
 --
 
@@ -225,8 +193,8 @@ CREATE TABLE `enquiry_message` (
 --
 
 INSERT INTO `enquiry_message` (`id`, `name`, `email`, `mobile`, `message`, `status`, `created_at`) VALUES
-(22, 'pooja', 'pooja@gmail.com', 8899117706, 'hello', 'Rejected', '2025-07-01 06:30:58'),
-(24, 'Priyanka ', 'priyanka@gmail.com', 8707858489, 'opening time', 'Rejected', '2025-09-15 04:13:08');
+(22, 'pooja', 'pooja@gmail.com', 8899117706, 'hello', 'Completed', '2025-07-01 06:30:58'),
+(24, 'Priyanka ', 'priyanka@gmail.com', 8707858489, 'opening time', 'Completed', '2025-09-15 04:13:08');
 
 -- --------------------------------------------------------
 
@@ -380,6 +348,49 @@ INSERT INTO `portfolio` (`id`, `file`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `product_category`
+--
+
+CREATE TABLE `product_category` (
+  `c_id` int(40) NOT NULL,
+  `c_service` varchar(200) NOT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `file` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product_category`
+--
+
+INSERT INTO `product_category` (`c_id`, `c_service`, `description`, `file`) VALUES
+(1, 'Electronics', 'Good Quality Electronics Items ', 'upload-images/360_F_309869755_IquCHHxF7YABo2odctUGEjMrgVDSM8qV.jpg'),
+(2, 'clothes ', 'very good collection', 'upload-images/360_F_309869755_IquCHHxF7YABo2odctUGEjMrgVDSM8qV.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_sub_category`
+--
+
+CREATE TABLE `product_sub_category` (
+  `s_id` int(40) NOT NULL,
+  `s_name` varchar(200) NOT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `file` varchar(200) NOT NULL,
+  `sub_service` int(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product_sub_category`
+--
+
+INSERT INTO `product_sub_category` (`s_id`, `s_name`, `description`, `file`, `sub_service`) VALUES
+(1, 'Mobile', 'all type of mobile', 'upload-images/download.jpg', 1),
+(2, 'womens clothes ', 'very good', 'upload-images/hand and feet.jpg', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reviews`
 --
 
@@ -463,27 +474,6 @@ INSERT INTO `staff_gallery` (`id`, `name`, `file`, `staff_designation_id`, `Shor
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sub_category_service`
---
-
-CREATE TABLE `sub_category_service` (
-  `s_id` int(40) NOT NULL,
-  `s_name` varchar(200) NOT NULL,
-  `description` varchar(200) DEFAULT NULL,
-  `file` varchar(200) NOT NULL,
-  `sub_service` int(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `sub_category_service`
---
-
-INSERT INTO `sub_category_service` (`s_id`, `s_name`, `description`, `file`, `sub_service`) VALUES
-(1, 'Mobile', 'All brand of mobiles are available here ', 'upload-images/vivo-mobile-phone-7-38mm-ultra-smooth-body-170g-light-2-5d-adjusted-outline-for-a-great-hold-703.jpg', 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tb_about`
 --
 
@@ -498,7 +488,7 @@ CREATE TABLE `tb_about` (
 --
 
 INSERT INTO `tb_about` (`id`, `page_title`, `page_description`) VALUES
-(1, 'dsd', ' fdsf');
+(1, 'dfdf', ' fasdf');
 
 -- --------------------------------------------------------
 
@@ -767,12 +757,6 @@ ALTER TABLE `business_hours`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `category_service`
---
-ALTER TABLE `category_service`
-  ADD PRIMARY KEY (`c_id`);
-
---
 -- Indexes for table `enquiry_message`
 --
 ALTER TABLE `enquiry_message`
@@ -809,6 +793,18 @@ ALTER TABLE `portfolio`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `product_category`
+--
+ALTER TABLE `product_category`
+  ADD PRIMARY KEY (`c_id`);
+
+--
+-- Indexes for table `product_sub_category`
+--
+ALTER TABLE `product_sub_category`
+  ADD PRIMARY KEY (`s_id`);
+
+--
 -- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
@@ -825,12 +821,6 @@ ALTER TABLE `staff_designation`
 --
 ALTER TABLE `staff_gallery`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `sub_category_service`
---
-ALTER TABLE `sub_category_service`
-  ADD PRIMARY KEY (`s_id`);
 
 --
 -- Indexes for table `tb_about`
@@ -906,19 +896,19 @@ ALTER TABLE `admin_login_details`
 -- AUTO_INCREMENT for table `all_products`
 --
 ALTER TABLE `all_products`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `all_services`
 --
 ALTER TABLE `all_services`
-  MODIFY `a_id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `a_id` int(40) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `banner_management`
 --
 ALTER TABLE `banner_management`
-  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `bill`
@@ -931,12 +921,6 @@ ALTER TABLE `bill`
 --
 ALTER TABLE `business_hours`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `category_service`
---
-ALTER TABLE `category_service`
-  MODIFY `c_id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `enquiry_message`
@@ -975,6 +959,18 @@ ALTER TABLE `portfolio`
   MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
+-- AUTO_INCREMENT for table `product_category`
+--
+ALTER TABLE `product_category`
+  MODIFY `c_id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `product_sub_category`
+--
+ALTER TABLE `product_sub_category`
+  MODIFY `s_id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
@@ -991,12 +987,6 @@ ALTER TABLE `staff_designation`
 --
 ALTER TABLE `staff_gallery`
   MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
---
--- AUTO_INCREMENT for table `sub_category_service`
---
-ALTER TABLE `sub_category_service`
-  MODIFY `s_id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tb_about`
@@ -1044,7 +1034,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users_notes`
 --
 ALTER TABLE `users_notes`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `users_wishlist`

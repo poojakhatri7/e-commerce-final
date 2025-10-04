@@ -53,7 +53,7 @@
         $total_products = mysqli_num_rows($sql1);
         
         ?>
-        <h4 class="mb-0"><?php  echo $total_products ?>  Total Products</h4>
+        <h4 class="mb-0"><?php  echo $total_products ?> Total Products</h4>
         <a href="available_products" class="fs-8 mb-0" style="color:rgba(95, 97, 230); font-weight: bold">More Info</a>
       </div>
     </div>

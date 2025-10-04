@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Oct 03, 2025 at 01:49 PM
+-- Generation Time: Oct 04, 2025 at 01:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -74,8 +74,12 @@ CREATE TABLE `all_products` (
 --
 
 INSERT INTO `all_products` (`id`, `c_id`, `s_id`, `product`, `description`, `price`, `discount_percentage`, `offer_price`, `created_at`, `file`, `product_number`) VALUES
-(1, 1, 1, 'Samsung mobile ', 'Good Mobile', 20000, 10, 18000, '2025-10-03 09:20:30', 'upload-images/', NULL),
-(2, 2, 2, 'jeans top', 'very good', 200, 10, 180, '2025-10-03 09:53:41', 'upload-images/download.jpg', NULL);
+(1, 1, 1, 'Apple', 'An apple a day keeps doctor away', 200, 10, 180, '2025-10-04 04:36:42', 'upload-images/apple.webp', NULL),
+(2, 1, 1, 'Guava', 'Guava Thai', 100, 10, 90, '2025-10-04 04:47:04', 'upload-images/Guava-Thai.webp', NULL),
+(3, 1, 1, 'Watermelon', 'Organically Grown Watermelon', 60, 5, 57, '2025-10-04 04:48:54', 'upload-images/Organically-Grown-Watermelon.webp', NULL),
+(4, 1, 1, 'Grapes', 'Grapes Bangalore Blue', 150, 10, 135, '2025-10-04 05:07:51', 'upload-images/Grapes-Bangalore-Blue.webp', NULL),
+(5, 2, 2, 'Chocochips Ice Cream Tub', 'Kwality Walls The Dairy Factory Chocochips Ice Cream Tub', 250, 10, 225, '2025-10-04 05:19:41', 'upload-images/Kwality-Walls-The-Dairy-Factory-Chocochips-Ice-Cream-Tub.webp', NULL),
+(6, 2, 2, 'Cream Pot Mango Tub', 'Premium Alphonso mango blend, Rich and creamy texture, Perfect summer indulgence', 250, 10, 225, '2025-10-04 05:23:59', 'upload-images/Cream-Pot-Mango-Tub.webp', NULL);
 
 -- --------------------------------------------------------
 
@@ -363,8 +367,9 @@ CREATE TABLE `product_category` (
 --
 
 INSERT INTO `product_category` (`c_id`, `c_service`, `description`, `file`) VALUES
-(1, 'Electronics', 'Good Quality Electronics Items ', 'upload-images/360_F_309869755_IquCHHxF7YABo2odctUGEjMrgVDSM8qV.jpg'),
-(2, 'clothes ', 'very good collection', 'upload-images/360_F_309869755_IquCHHxF7YABo2odctUGEjMrgVDSM8qV.jpg');
+(1, 'Fruits and Vegetables', 'Fresh Fruits and Vegetables ', 'upload-images/fruits.webp'),
+(2, 'Ice-cream and More', 'Ice cream bar , tubes and more', 'upload-images/download.jpg'),
+(3, 'Packaged Food', 'sealed food items', 'upload-images/packaged-food.png');
 
 -- --------------------------------------------------------
 
@@ -385,8 +390,10 @@ CREATE TABLE `product_sub_category` (
 --
 
 INSERT INTO `product_sub_category` (`s_id`, `s_name`, `description`, `file`, `sub_service`) VALUES
-(1, 'Mobile', 'all type of mobile', 'upload-images/download.jpg', 1),
-(2, 'womens clothes ', 'very good', 'upload-images/hand and feet.jpg', 2);
+(1, 'Fresh Vegetables', 'Fresh seasonal drops', 'upload-images/sub-category.webp', 1),
+(2, 'Tubs', 'Buy Tubs Online', 'upload-images/tubs.jpg', 2),
+(3, 'Leafy herb and seasonings', 'Leafy Vegetables', 'upload-images/images.jpg', 1),
+(4, 'Cones', 'Celebrate with chocolate treats', 'upload-images/tubs.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -896,7 +903,7 @@ ALTER TABLE `admin_login_details`
 -- AUTO_INCREMENT for table `all_products`
 --
 ALTER TABLE `all_products`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `all_services`
@@ -962,13 +969,13 @@ ALTER TABLE `portfolio`
 -- AUTO_INCREMENT for table `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `c_id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `c_id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `product_sub_category`
 --
 ALTER TABLE `product_sub_category`
-  MODIFY `s_id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `s_id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `reviews`
